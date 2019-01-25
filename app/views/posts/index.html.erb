@@ -1,5 +1,4 @@
 <% @posts.each do |post| %>
-  <%= post.prifile.username %>
   <%= post.content %>
   <%= image_tag(post.image.url) %>
   <%= link_to "詳しくみる", post_path(post.id) %>

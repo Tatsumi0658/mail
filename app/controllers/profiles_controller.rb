@@ -1,5 +1,9 @@
 class ProfilesController < ApplicationController
   before_action:set_prof, only:[:edit,:update,:destroy,:show]
+  def index
+    @profiles = Profile.all
+  end
+
   def new
     @profile = Profile.new
   end
@@ -27,15 +31,12 @@ class ProfilesController < ApplicationController
   def show
   end
 
-  def index
-  end
-
   private
   def set_prof
     @profile = Profile.find(params[:id])
   end
 
   def prof_params
-    params.require(:profile).permit(:username, :image, :image_cache)
+    params.require(:profile).permit(:username, :image)
   end
 end
