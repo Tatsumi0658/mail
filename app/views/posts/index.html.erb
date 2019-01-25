@@ -5,4 +5,5 @@
   <%= link_to "詳しくみる", post_path(post.id) %>
   <%= link_to "編集する", edit_post_path(post.id) %>
   <%= link_to "削除する", post_path(post.id), method: :delete, data:{ confirm:"削除して良い？" } %>
+  <%= link_to "アカウント", profile_path(post.profile.id) %>
 <% end %>
