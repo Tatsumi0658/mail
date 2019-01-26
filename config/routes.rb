@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :profiles
   resources :contacts
-  resources :favorites, only:[:create, :destroy]
+  resources :favorites, only:[:show, :create, :destroy]
   resources :posts do
     collection do
       post :confirm

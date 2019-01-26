@@ -1,0 +1,9 @@
+<% if @fav == [] %>
+  <p>いいねはありません</p>
+<% else %>
+  <% @fav.each do |fav| %>
+    <%= fav.post.profile.username %>
+    <%= fav.post.content %>
+    <%= image_tag(fav.post.image.url) %>
+  <% end %>
+<% end %>
