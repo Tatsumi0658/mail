@@ -13,6 +13,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @favorite = current_profile.favorites.find_by(post_id: @post.id)
   end
 
   def edit
@@ -20,7 +21,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.profile_id = current_user.id
+    @post.profile_id = current_profile.id
     if @post.save
       redirect_to posts_path
     else
@@ -29,7 +30,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.profile_id == current_user.id
+    if @post.profile_id == current_profile.id
       @post.update(post_params)
       if @post.valid?
         redirect_to posts_path
@@ -43,12 +44,12 @@ class PostsController < ApplicationController
 
   def confirm
     @post = Post.new(post_params)
-    @post.profile_id = current_user.id
+    @post.profile_id = current_profile.id
     render :new if @post.invalid?
   end
 
   def destroy
-    if @post.profile_id == current_user.id
+    if @post.profile_id == current_profile.id
       @post.destroy
       redirect_to posts_path
     else

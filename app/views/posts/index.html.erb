@@ -3,9 +3,10 @@
   <%= post.content %>
   <%= image_tag(post.image.url) %>
   <%= link_to "詳しくみる", post_path(post.id) %>
-  <% if post.profile_id == current_user.id %>
+  <% if current_profile == nil || post.profile_id == current_profile.id %>
     <%= link_to "編集する", edit_post_path(post.id) %>
     <%= link_to "削除する", post_path(post.id), method: :delete, data:{ confirm:"削除して良い？" } %>
   <% end %>
   <%= link_to "アカウント", profile_path(post.profile.id) %>
 <% end %>
+<%= link_to "ログアウト", session_path(current_user.id), method: :delete %>

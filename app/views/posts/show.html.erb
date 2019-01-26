@@ -1,2 +1,10 @@
 <%= @post.content %>
 <%= image_tag(@post.image.url) %>
+
+<% unless @post.profile_id == current_profile.id %>
+  <% if @favorite.present? %>
+    <%= link_to "お気に入り解除", favorite_path(id: @favorite.id), method: :delete %>
+  <% else %>
+    <%= link_to "お気に入り登録", favorites_path(post_id: @post.id), method: :post %>
+  <% end %>
+<% end %>
