@@ -25,17 +25,25 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.save(user_params)
-    if @user.valid?
-      redirect_to posts_path
+    if @user.usr_id == current_user.id
+      @user.update(user_params)
+      if @user.valid?
+        redirect_to posts_path
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to posts_path
     end
   end
 
   def destroy
-    @user = User.destroy
-    redirect_to new_user_path
+    if @user.user_id == current_user.id
+      @user = User.destroy
+      redirect_to new_user_path
+    else
+      redirect_to posts_path
+    end
   end
 
   private

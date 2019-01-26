@@ -5,7 +5,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    if params[:back]
+      @post = Post.new(post_params)
+    else
+      @post = Post.new
+    end
   end
 
   def show
@@ -24,14 +28,32 @@ class PostsController < ApplicationController
     end
   end
 
+  def update
+    if @post.profile_id == current_user.id
+      @post.update(post_params)
+      if @post.valid?
+        redirect_to posts_path
+      else
+        render :edit
+      end
+    else
+      redirect_to posts_path
+    end
+  end
+
   def confirm
     @post = Post.new(post_params)
+    @post.profile_id = current_user.id
     render :new if @post.invalid?
   end
 
   def destroy
-    @post.destroy
-    redirect_to posts_path
+    if @post.profile_id == current_user.id
+      @post.destroy
+      redirect_to posts_path
+    else
+      redirect_to posts_path
+    end
   end
 
   private

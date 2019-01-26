@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
 
   def create
     @profile = Profile.new(prof_params)
+    @profile.user_id = current_user.id
     if @profile.save
       redirect_to posts_path
     else
@@ -21,10 +22,15 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    if @profile.save
-      redirect_to posts_path
+    if @profile.user_id == current_user.id
+      @profile.update(prof_params)r
+      if @profile.valid?
+        redirect_to posts_path
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to posts_path
     end
   end
 
