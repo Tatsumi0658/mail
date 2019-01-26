@@ -1,6 +1,8 @@
 <%= image_tag(@profile.image.url) %>
 <%= @profile.username %>
+<%= @profile.introduce %>
 <% if @profile.user_id == current_user.id %>
   <%= link_to "編集する", edit_profile_path(current_user.id) %>
   <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+  <%= link_to "個人情報の設定変更", edit_user_path(current_user.id) %>
 <% end %>

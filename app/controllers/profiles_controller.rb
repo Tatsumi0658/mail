@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.user_id == current_user.id
-      @profile.update(prof_params)r
+      @profile.update(prof_params)
       if @profile.valid?
         redirect_to posts_path
       else
@@ -43,6 +43,6 @@ class ProfilesController < ApplicationController
   end
 
   def prof_params
-    params.require(:profile).permit(:username, :image)
+    params.require(:profile).permit(:username, :image, :introduce)
   end
 end

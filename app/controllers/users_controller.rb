@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.usr_id == current_user.id
+    if @user.id == current_user.id
       @user.update(user_params)
       if @user.valid?
         redirect_to posts_path
