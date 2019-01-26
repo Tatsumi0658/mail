@@ -35,6 +35,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
+    @posts = Post.where(profile_id: set_prof.id).all
   end
 
   private

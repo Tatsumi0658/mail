@@ -1,9 +1,11 @@
-<% if @fav == [] %>
+<% if @favorite == [] %>
   <p>いいねはありません</p>
 <% else %>
-  <% @fav.each do |fav| %>
+  <% @favorite.each do |fav| %>
     <%= fav.post.profile.username %>
     <%= fav.post.content %>
     <%= image_tag(fav.post.image.url) %>
+    <!--下記は画像繊維-->
+    <%= link_to image_tag(fav.post.image.url), post_path(fav.post_id) %>
   <% end %>
 <% end %>
