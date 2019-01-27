@@ -2,10 +2,10 @@
   <p>いいねはありません</p>
 <% else %>
   <% @favorite.each do |fav| %>
-    <%= fav.post.profile.username %>
-    <%= fav.post.content %>
-    <%= image_tag(fav.post.image.url) %>
-    <!--下記は画像繊維-->
-    <%= link_to image_tag(fav.post.image.url), post_path(fav.post_id) %>
+    <% if fav.image.present? %>
+      <%= link_to image_tag(fav.post.image.url), post_path(fav.post_id) %>
+    <% else %>
+      <%= link_to fav.post.content, post_path(fav.post_id) %>
+    <% end %>
   <% end %>
 <% end %>

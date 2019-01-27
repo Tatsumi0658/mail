@@ -9,3 +9,7 @@
     <%= link_to "お気に入り登録", favorites_path(post_id: @post.id), method: :post %>
   <% end %>
 <% end %>
+<% if @post.profile_id == current_profile.id %>
+  <%= link_to "編集する", edit_post_path(@post.id) %>
+  <%= link_to "削除する", post_path(@post.id), method: :delete, data:{ confirm:"削除して良い？" } %>
+<% end %>
