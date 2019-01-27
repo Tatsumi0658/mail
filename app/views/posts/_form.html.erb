@@ -8,7 +8,7 @@
           <% end %>
         <% end %>
         <%= f.label :content, "投稿内容" %><br />
-        <%= f.text_area :content, class:"post_content" %>
+        <%= f.text_area :content, class:"form-control" %>
         <br />
         <%= f.label :image, "画像" %><br />
         <%= f.file_field :image %>
@@ -24,7 +24,7 @@
               <%= image_tag(current_profile.image.url) %>
             <% end %>
           </div>
-          <h3><%= current_profile.username %></h3>
+          <h3><%= link_to current_profile.username, profile_path(current_profile.id) %></h3>
         <% end %>
       <% end %>
     </div>

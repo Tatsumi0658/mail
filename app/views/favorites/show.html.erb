@@ -5,6 +5,7 @@
       <p>いいねはありません</p>
     </div>
   <% else %>
+  <div class="row">
     <% @favorite.each do |fav| %>
       <div class="col-4">
       <% if fav.post.image.present? %>
@@ -16,5 +17,6 @@
       <% end %>
       </div>
     <% end %>
+  </div>
   <% end %>
 </div>

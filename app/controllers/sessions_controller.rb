@@ -6,7 +6,12 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to new_profile_path
+      if current_profile.present?
+        redirect_to posts_path
+      else
+        redirect_to new_profile_path
+        flash[:warning] = "まずはプロフィールを作成しましょう"
+      end
     else
       render :new
     end

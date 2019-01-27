@@ -14,18 +14,17 @@
           </div>
           <%= simple_format(post.content) %>
           <div class="link_area">
-            <%= link_to "詳しくみる", post_path(post.id) %>
             <% if current_user.present? %>
               <% if current_profile.present? %>
                 <% if post.profile_id == current_profile.id %>
-                  <%= link_to "編集する", edit_post_path(post.id) %>
-                  <%= link_to "削除する", post_path(post.id), method: :delete, data:{ confirm:"削除して良い？" } %>
+                  <%= link_to "編集する", edit_post_path(post.id), class:"btn btn-secondary" %>
+                  <%= link_to "削除する", post_path(post.id), method: :delete, data:{ confirm:"削除して良い？" }, class:"btn btn-danger" %>
+                <% else %>
+                 <%= link_to "詳しくみる", post_path(post.id), class:"btn btn-info" %>
                 <% end %>
               <% end %>
-            <% end %>
-            <%= link_to "アカウント", profile_path(post.profile.id) %>
-            <% if current_user.present? %>
-              <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+            <% else %>
+               <%= link_to "詳しくみる", post_path(post.id), class:"btn btn-info" %>
             <% end %>
           </div>
         </div>
@@ -39,7 +38,7 @@
               <%= image_tag(current_profile.image.url) %>
             <% end %>
           </div>
-          <h3><%= current_profile.username %></h3>
+          <h3><%= link_to current_profile.username, profile_path(current_profile.id) %></h3>
         <% end %>
       <% end %>
     </div>

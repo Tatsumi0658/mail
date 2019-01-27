@@ -18,7 +18,7 @@
               <%= image_tag(current_profile.image.url) %>
             <% end %>
           </div>
-          <%= current_profile.username %>
+          <h3><%= link_to current_profile.username, profile_path(current_profile.id) %></h3>
         <% end %>
       <% end %>
     </div>

@@ -12,9 +12,8 @@
       <%= simple_format(@profile.introduce) %>
       <div class="link_area">
         <% if @profile.user_id == current_user.id %>
-          <%= link_to "いいね一覧", favorite_path(current_profile.id) %>
-          <%= link_to "編集する", edit_profile_path(current_profile.id) %>
-          <%= link_to "個人情報の設定変更", edit_user_path(current_user.id) %>
+          <%= link_to "いいね一覧", favorite_path(current_profile.id), class:"btn btn-primary" %>
+          <%= link_to "プロフィール編集", edit_profile_path(current_profile.id), class:"btn btn-secondary" %>
         <% end %>
       </div>
     </div>

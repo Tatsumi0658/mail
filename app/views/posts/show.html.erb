@@ -9,14 +9,14 @@
       <div class="link_area">
         <% unless @post.profile_id == current_profile.id %>
           <% if @favorite.present? %>
-            <%= link_to "お気に入り解除", favorite_path(id: @favorite.id), method: :delete %>
+            <%= link_to "いいねをはずす", favorite_path(id: @favorite.id), method: :delete, class:"btn btn-danger" %>
           <% else %>
-            <%= link_to "お気に入り登録", favorites_path(post_id: @post.id), method: :post %>
+            <%= link_to "いいね", favorites_path(post_id: @post.id), method: :post, class:"btn btn-primary" %>
           <% end %>
         <% end %>
         <% if @post.profile_id == current_profile.id %>
-          <%= link_to "編集する", edit_post_path(@post.id) %>
-          <%= link_to "削除する", post_path(@post.id), method: :delete, data:{ confirm:"削除して良い？" } %>
+          <%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-secondary" %>
+          <%= link_to "削除する", post_path(@post.id), method: :delete, data:{ confirm:"削除して良い？" }, class:"btn btn-danger" %>
         <% end %>
       </div>
     </div>
@@ -28,7 +28,7 @@
               <%= image_tag(current_profile.image.url) %>
             <% end %>
           </div>
-          <h3><%= current_profile.username %></h3>
+          <h3><%= link_to current_profile.username, profile_path(current_profile.id) %></h3>
         <% end %>
       <% end %>
     </div>
