@@ -1,6 +1,26 @@
-<% @profiles.each do |pro| %>
-  <%= link_to pro.username, profile_path(pro.id) %>
-  <% if pro.image.present? %>
-    <%= link_to image_tag(pro.image.url), profile_path(pro.id) %>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sd-6 col-md-8">
+      <% @profiles.each do |pro| %>
+        <div class="profile_index">
+          <% if pro.image.present? %>
+            <%= link_to image_tag(pro.image.url), profile_path(pro.id) %>
+          <% end %>
+          <%= link_to pro.username, profile_path(pro.id) %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4 align-self-start">
+      <% if current_user.present? %>
+        <% if current_profile.present? %>
+          <div class="img_box">
+            <% if current_profile.image.present? %>
+              <%= image_tag(current_profile.image.url) %>
+            <% end %>
+          </div>
+          <%= current_profile.username %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

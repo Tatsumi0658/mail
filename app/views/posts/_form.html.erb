@@ -1,14 +1,32 @@
-<%= form_with(model: @post, local: true, url:choose_new_or_edit) do |f| %>
-  <% if @post.errors.any? %>
-    <% @post.errors.full_messages.each do |msg| %>
-      <%= msg %>
-    <% end %>
-  <% end %>
-  <%= f.label :content %>
-  <%= f.text_area :content %>
-
-  <%= f.label :image %>
-  <%= f.file_field :image %>
-
-  <%= f.submit "投稿" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sd-6 col-md-8">
+      <%= form_with(model: @post, local: true, url:choose_new_or_edit) do |f| %>
+        <% if @post.errors.any? %>
+          <% @post.errors.full_messages.each do |msg| %>
+            <%= msg %>
+          <% end %>
+        <% end %>
+        <%= f.label :content, "投稿内容" %><br />
+        <%= f.text_area :content, class:"post_content" %>
+        <br />
+        <%= f.label :image, "画像" %><br />
+        <%= f.file_field :image %>
+        <br />
+        <%= f.submit "投稿する", class:"btn btn-primary submit" %>
+      <% end %>
+    </div>
+    <div class="col-md-4 align-self-start">
+      <% if current_user.present? %>
+        <% if current_profile.present? %>
+          <div class="img_box">
+            <% if current_profile.image.present? %>
+              <%= image_tag(current_profile.image.url) %>
+            <% end %>
+          </div>
+          <h3><%= current_profile.username %></h3>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

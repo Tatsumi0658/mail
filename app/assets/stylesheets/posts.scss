@@ -1,3 +1,68 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.img_box{
+  margin-bottom:5px;
+}
+.img_box img{
+  position:relative;
+  max-width:100%;
+}
+.col-md-4{
+  position:sticky;
+  top:0;
+  text-align: center;
+}
+.post_area{
+  border-bottom:1px solid #dedede;
+  padding-bottom:10px;
+}
+.post_content{
+  width:80%;
+}
+.submit{
+  margin-top:20px;
+}
+.profile_index{
+  padding:5px 0;
+  border-top:1px solid #dedede;
+}
+.profile_index img{
+  width:100px;
+  height:100px;
+  margin-right:10px;
+}
+.post_index_title{
+  margin-top:25px;
+  margin-bottom:2px;
+  padding:5px 0 5px 3px;
+  background-color:indigo;
+  color:#fff;
+}
+.post_pro_img{
+  width:30px;
+  height:30px;
+  border-radius:15px;
+}
+.post_user_name{
+  padding-top:8px;
+}
+.post_user_name a{
+  text-decoration:none;
+  color:#000;
+}
+.link_area{
+  text-align:right;
+  font-size:0.8rem;
+}
+.user_form_content{
+  width:280px;
+  margin:0 auto;
+  text-align:center;
+}
+.form-control{
+  margin-bottom:10px;
+}
+.alert{
+  text-align:center;
+}

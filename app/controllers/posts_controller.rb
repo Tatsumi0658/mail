@@ -11,11 +11,12 @@ class PostsController < ApplicationController
     elsif current_profile == nil
       redirect_to new_profile_path
       flash[:danger] = "投稿するにはプロフィールを作成してください"
-    end
-    if params[:back]
-      @post = Post.new(post_params)
     else
-      @post = Post.new
+      if params[:back]
+        @post = Post.new(post_params)
+      else
+        @post = Post.new
+      end
     end
   end
 

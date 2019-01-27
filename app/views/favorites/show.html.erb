@@ -1,11 +1,20 @@
-<% if @favorite == [] %>
-  <p>いいねはありません</p>
-<% else %>
-  <% @favorite.each do |fav| %>
-    <% if fav.image.present? %>
-      <%= link_to image_tag(fav.post.image.url), post_path(fav.post_id) %>
-    <% else %>
-      <%= link_to fav.post.content, post_path(fav.post_id) %>
+<div class="container text-center">
+  <h3>いいね一覧</h3>
+  <% if @favorite == [] %>
+    <div class="col-12">
+      <p>いいねはありません</p>
+    </div>
+  <% else %>
+    <% @favorite.each do |fav| %>
+      <div class="col-4">
+      <% if fav.post.image.present? %>
+        <div class="img_box">
+          <%= link_to image_tag(fav.post.image.url), post_path(fav.post_id) %>
+        </div>
+      <% else %>
+        <%= link_to fav.post.content, post_path(fav.post_id) %>
+      <% end %>
+      </div>
     <% end %>
   <% end %>
-<% end %>
+</div>

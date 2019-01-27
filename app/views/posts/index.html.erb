@@ -1,18 +1,46 @@
-<% @posts.each do |post| %>
-  <%= post.profile.username %>
-  <%= simple_format(post.content) %>
-  <%= image_tag(post.image.url) %>
-  <%= link_to "詳しくみる", post_path(post.id) %>
-  <% if current_user.present? %>
-    <% if current_profile.present? %>
-      <% if post.profile_id == current_profile.id %>
-        <%= link_to "編集する", edit_post_path(post.id) %>
-        <%= link_to "削除する", post_path(post.id), method: :delete, data:{ confirm:"削除して良い？" } %>
+<div class="container">
+  <div class="row">
+    <div class="col-sd-6 col-md-8">
+      <% @posts.each do |post| %>
+        <div class="post_area">
+          <h5 class="post_user_name">
+            <% if post.profile.image.present? %>
+              <%= link_to image_tag(post.profile.image.url, class:"post_pro_img"), profile_path(post.profile_id) %>
+            <% end %>
+            <%= link_to post.profile.username, profile_path(post.profile_id) %>
+          </h5>
+          <div class="img_box">
+            <%= image_tag(post.image.url) %>
+          </div>
+          <%= simple_format(post.content) %>
+          <div class="link_area">
+            <%= link_to "詳しくみる", post_path(post.id) %>
+            <% if current_user.present? %>
+              <% if current_profile.present? %>
+                <% if post.profile_id == current_profile.id %>
+                  <%= link_to "編集する", edit_post_path(post.id) %>
+                  <%= link_to "削除する", post_path(post.id), method: :delete, data:{ confirm:"削除して良い？" } %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <%= link_to "アカウント", profile_path(post.profile.id) %>
+            <% if current_user.present? %>
+              <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-    <% end %>
-  <% end %>
-  <%= link_to "アカウント", profile_path(post.profile.id) %>
-<% end %>
-<% if current_user.present? %>
-  <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
-<% end %>
+    </div>
+    <div class="col-md-4 align-self-start">
+      <% if current_user.present? %>
+        <% if current_profile.present? %>
+          <div class="img_box">
+            <% if current_profile.image.present? %>
+              <%= image_tag(current_profile.image.url) %>
+            <% end %>
+          </div>
+          <h3><%= current_profile.username %></h3>
+        <% end %>
+      <% end %>
+    </div>
+</div>

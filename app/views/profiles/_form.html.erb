@@ -1,17 +1,21 @@
-<% if @profile.errors.any? %>
-  <% @profile.errors.full_messages do |msg| %>
-    <%= msg %>
-  <% end %>
-<% end %>
-<%= form_with(model:@profile, local:true) do |f| %>
-  <%= f.label:username %>
-  <%= f.text_field:username %>
-
-  <%= f.label:image %>
-  <%= f.file_field:image %>
-
-  <%= f.label:introduce %>
-  <%= f.text_area:introduce %>
-
-  <%= f.submit "登録する" %>
-<% end %>
+<div class="container">
+  <div class="col-12 sd-6 md-8">
+    <% if @profile.errors.any? %>
+      <% @profile.errors.full_messages do |msg| %>
+        <%= msg %>
+      <% end %>
+    <% end %>
+    <%= form_with(model:@profile, local:true) do |f| %>
+      <%= f.label:username, "ユーザーネーム" %><br />
+      <%= f.text_field:username, placeholder:"本サイト内で使用される名前です" %>
+      <br />
+      <%= f.label:image, "アイコン" %><br />
+      <%= f.file_field:image %>
+      <br />
+      <%= f.label:introduce, "自己紹介" %><br />
+      <%= f.text_area:introduce, class:"post_content" %>
+      <br />
+      <%= f.submit "登録する", class:"btn btn-primary submit" %>
+    <% end %>
+  </div>
+</div>
