@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      RegisterMailer.with(user: @user).register_mail.deliver
       redirect_to new_session_path
     else
       render :new

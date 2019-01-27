@@ -1,6 +1,6 @@
 <% @posts.each do |post| %>
   <%= post.profile.username %>
-  <%= post.content %>
+  <%= simple_format(post.content) %>
   <%= image_tag(post.image.url) %>
   <%= link_to "詳しくみる", post_path(post.id) %>
   <% if current_profile == nil || post.profile_id == current_profile.id %>

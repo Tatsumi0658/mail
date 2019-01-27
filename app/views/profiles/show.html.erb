@@ -1,6 +1,6 @@
 <%= image_tag(@profile.image.url) %>
 <%= @profile.username %>
-<%= @profile.introduce %>
+<%= simple_format(@profile.introduce) %>
 <% if @profile.user_id == current_user.id %>
   <%= link_to "編集する", edit_profile_path(current_profile.id) %>
   <%= link_to "いいね一覧", favorite_path(current_profile.id) %>
