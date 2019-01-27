@@ -1,3 +1,5 @@
 <%= render "form" %>
 
-<%= link_to "アカウントを削除する", user_path(@user.id), method: :delete, data:{ confirm: "本当に削除しても良いですか？" } %>
+<div class="text-center">
+  <%= link_to "アカウントを削除する", user_path(@user.id), method: :delete, data:{ confirm: "本当に削除しても良いですか？" }, class:"btn btn-danger submit" %>
+</div>

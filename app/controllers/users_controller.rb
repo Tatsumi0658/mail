@@ -44,8 +44,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.user_id == current_user.id
-      @user = User.destroy
+    if @user.id == current_user.id
+      @user.destroy
       redirect_to new_user_path
       flash[:success] = "アカウントを削除しました"
     else

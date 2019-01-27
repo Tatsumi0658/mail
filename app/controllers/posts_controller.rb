@@ -42,8 +42,8 @@ class PostsController < ApplicationController
       redirect_to posts_path, flash:{ success:"投稿しました" }
       #flash[:success] = "投稿しました"
     else
-      render :new
       flash[:danger] = "投稿できませんでした"
+      render :new
     end
   end
 

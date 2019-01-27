@@ -34,6 +34,7 @@ class ProfilesController < ApplicationController
         render :edit
       end
     else
+      flash[:danger] = "更新権限がありません"
       redirect_to posts_path
     end
   end

@@ -4,5 +4,5 @@ class User < ApplicationRecord
   before_validation { email.downcase! }
   has_secure_password
   validates :password, presence: true, length:{ minimum:8 }
-  has_one :profile
+  has_one :profile, dependent: :destroy
 end
