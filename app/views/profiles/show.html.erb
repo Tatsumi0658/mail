@@ -1,12 +1,17 @@
-<%= image_tag(@profile.image.url) %>
+<% if @profile.image.present? %>
+  <%= image_tag(@profile.image.url) %>
+<% end %>
 <%= @profile.username %>
 <%= simple_format(@profile.introduce) %>
+
 <% if @profile.user_id == current_user.id %>
   <%= link_to "編集する", edit_profile_path(current_profile.id) %>
   <%= link_to "いいね一覧", favorite_path(current_profile.id) %>
   <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
   <%= link_to "個人情報の設定変更", edit_user_path(current_user.id) %>
 <% end %>
+
+
 <% @posts.each do |post| %>
   <%= link_to image_tag(post.image.url), post_path(post.id) %>
 <% end %>

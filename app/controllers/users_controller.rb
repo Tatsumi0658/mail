@@ -10,13 +10,15 @@ class UsersController < ApplicationController
     if @user.save
       RegisterMailer.with(user: @user).register_mail.deliver
       redirect_to new_session_path
+      flash[:success] = "ユーザー登録が完了しました。ご登録いただいたメールアドレスに完了メールをお送りしておりますので、ご確認ください"
     else
+      flash.now[:danger] = "ユーザー登録に失敗しました。今一度入力をお願い致します。"
       render :new
     end
   end
 
   def index
-    @users = User.all
+    redirect_to new_user_path
   end
 
   def show
@@ -30,11 +32,14 @@ class UsersController < ApplicationController
       @user.update(user_params)
       if @user.valid?
         redirect_to posts_path
+        flash[:success] = "更新しました"
       else
+        flash[:danger] = "更新に失敗しました。今一度ご確認をお願いします"
         render :edit
       end
     else
       redirect_to posts_path
+      flash[:danger] = "更新権限がありません"
     end
   end
 
@@ -42,8 +47,10 @@ class UsersController < ApplicationController
     if @user.user_id == current_user.id
       @user = User.destroy
       redirect_to new_user_path
+      flash[:success] = "アカウントを削除しました"
     else
       redirect_to posts_path
+      flash[:danger] = "削除できませんでした"
     end
   end
 

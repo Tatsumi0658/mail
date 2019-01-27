@@ -13,7 +13,9 @@ class ProfilesController < ApplicationController
     @profile.user_id = current_user.id
     if @profile.save
       redirect_to posts_path
+      flash[:success] = "プロフィールを作成しました"
     else
+      flash.now[:danger] = "失敗しました"
       render :new
     end
   end
@@ -26,7 +28,9 @@ class ProfilesController < ApplicationController
       @profile.update(prof_params)
       if @profile.valid?
         redirect_to posts_path
+        flash[:success] = "プロフィールを更新しました"
       else
+        flash[:danger] = "プロフィールの更新に失敗しました"
         render :edit
       end
     else
@@ -35,7 +39,15 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @posts = Post.where(profile_id: set_prof.id).all
+    if current_user.nil?
+      redirect_to new_session_path
+      flash[:danger] = "ここから先を閲覧するにはログインしてください"
+    elsif current_profile.nil?
+      redirect_to new_profile_path
+      flash[:danger] = "ここから先を閲覧するにはプロフィールを作成してください"
+    else
+      @posts = Post.where(profile_id: set_prof.id).all
+    end
   end
 
   private

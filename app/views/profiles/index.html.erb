@@ -1,4 +1,6 @@
 <% @profiles.each do |pro| %>
-  <%= pro.username %>
-  <%= image_tag(pro.image.url) %>
+  <%= link_to pro.username, profile_path(pro.id) %>
+  <% if pro.image.present? %>
+    <%= link_to image_tag(pro.image.url), profile_path(pro.id) %>
+  <% end %>
 <% end %>
