@@ -24,6 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'faker'
 
 #Other
 group :development, :test do
