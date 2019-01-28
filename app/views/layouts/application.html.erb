@@ -41,6 +41,8 @@
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                   <% unless current_profile.nil? %>
                     <%= link_to "プロフィール編集", edit_profile_path(current_profile.id), class:"dropdown-item" %>
+                  <% else %>
+                    <%= link_to "プロフィール作成", new_profile_path, class:"dropdown-item" %>
                   <% end %>
                   <%= link_to "個人情報の変更", edit_user_path(current_user.id), class:"dropdown-item" %>
                   <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class:"dropdown-item" %>

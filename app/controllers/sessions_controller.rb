@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       if current_profile.present?
         redirect_to posts_path
-        falsh[:success] = "ログインに成功しました"
+        flash[:success] = "ログインに成功しました"
       else
         redirect_to new_profile_path
         flash[:warning] = "まずはプロフィールを作成しましょう"
