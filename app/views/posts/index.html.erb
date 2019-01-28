@@ -22,6 +22,8 @@
                 <% else %>
                  <%= link_to "詳しくみる", post_path(post.id), class:"btn btn-info" %>
                 <% end %>
+              <% else %>
+                <%= link_to "詳しくみる", post_path(post.id), class:"btn btn-info" %>
               <% end %>
             <% else %>
                <%= link_to "詳しくみる", post_path(post.id), class:"btn btn-info" %>
