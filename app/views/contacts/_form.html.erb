@@ -1,32 +1,37 @@
-<%= form_with(model: contact, local: true) do |form| %>
-  <% if contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+<div class="container">
+  <div class="col-sd-6 col-md-8">
+    <%= form_with(model: contact, local: true) do |form| %>
+      <% if contact.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
 
-      <ul>
-      <% contact.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% contact.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name, class:"form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
+      <div class="field">
+        <%= form.label :email %>
+        <%= form.text_field :email, class:"form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+      <div class="field">
+        <%= form.label :content %>
+        <%= form.text_area :content , class:"form-control" %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="actions">
+        <%= form.submit class:"btn btn-primary submit" %>
+        <%= link_to 'Back', contacts_path, class:"btn btn-secondary submit" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
