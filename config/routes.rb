@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :sessions, only:[:new, :create, :destroy]
   resources :users
   resources :profiles
-  resources :contacts
+  resources :contacts, only:[:new, :create]
   resources :favorites, only:[:show, :create, :destroy]
   resources :posts do
     collection do
