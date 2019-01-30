@@ -38,9 +38,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.profile_id = current_profile.id
+    @post_user = current_user
     if @post.save
+      PostMailer.with(user: @post_user).post_mail.deliver
       redirect_to posts_path, flash:{ success:"投稿しました" }
-      #flash[:success] = "投稿しました"
     else
       flash[:danger] = "投稿できませんでした"
       render :new
